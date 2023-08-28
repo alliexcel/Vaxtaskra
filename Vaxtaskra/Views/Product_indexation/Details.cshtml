@@ -1,0 +1,50 @@
+﻿@model Vaxtaskra.Models.Product_indexation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product_indexation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.is_Indexed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_Indexed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MAX_number_payments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MAX_number_payments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MIN_number_payments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MIN_number_payments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.ProductName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductIndexationID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

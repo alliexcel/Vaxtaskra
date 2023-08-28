@@ -1,0 +1,42 @@
+﻿@model Vaxtaskra.Models.Vaxtafotur
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Vaxtafotur</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Heiti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Heiti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Is_Indexed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Is_Indexed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_active)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VaxtafoturID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

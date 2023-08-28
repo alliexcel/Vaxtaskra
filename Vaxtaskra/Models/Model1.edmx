@@ -1,0 +1,1067 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="VaxtaDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gjaldskra">
+          <Key>
+            <PropertyRef Name="GjaldskraID" />
+          </Key>
+          <Property Name="GjaldskraID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Númer" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Heiti" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Fjárhæð" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gjaldskra_Product">
+          <Key>
+            <PropertyRef Name="GjaldskraProductID" />
+          </Key>
+          <Property Name="GjaldskraProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="GjaldskraID" Type="int" Nullable="false" />
+          <Property Name="TegundGjaldID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="PaymentMethodID" />
+          </Key>
+          <Property Name="PaymentMethodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentMethodType" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ProductCategoryID" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="SourceSystemID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product_indexation">
+          <Key>
+            <PropertyRef Name="ProductIndexationID" />
+          </Key>
+          <Property Name="ProductIndexationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="is_Indexed" Type="bit" Nullable="false" />
+          <Property Name="MAX_number_payments" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MIN_number_payments" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="ProductCategoryID" />
+          </Key>
+          <Property Name="ProductCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ProductTypeID" Type="int" Nullable="false" />
+          <Property Name="is_individual_product" Type="bit" />
+        </EntityType>
+        <EntityType Name="ProductInterests">
+          <Key>
+            <PropertyRef Name="ProductInterestsID" />
+          </Key>
+          <Property Name="ProductInterestsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_indexationID" Type="int" Nullable="false" />
+          <Property Name="VaxtaRunaIntID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductPayment">
+          <Key>
+            <PropertyRef Name="ProductPaymentID" />
+          </Key>
+          <Property Name="ProductPaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductIndexationID" Type="int" Nullable="false" />
+          <Property Name="PaymentMethodID" Type="int" Nullable="false" />
+          <Property Name="TemplateID" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="ProductTypeID" />
+          </Key>
+          <Property Name="ProductTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Has_downpayment" Type="bit" Nullable="false" />
+          <Property Name="Has_collateral" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SourceSystem">
+          <Key>
+            <PropertyRef Name="SourceSystemID" />
+          </Key>
+          <Property Name="SourceSystemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SourceSystemName" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tegund_gjalds">
+          <Key>
+            <PropertyRef Name="TegundGjaldID" />
+          </Key>
+          <Property Name="TegundGjaldID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tegund_Gjalds" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Vaxtafotur">
+          <Key>
+            <PropertyRef Name="VaxtafoturID" />
+          </Key>
+          <Property Name="VaxtafoturID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Heiti" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Is_Indexed" Type="bit" />
+          <Property Name="is_active" Type="bit" />
+        </EntityType>
+        <EntityType Name="Vaxtafotur_interests">
+          <Key>
+            <PropertyRef Name="Vaxtafotur_interestsID" />
+          </Key>
+          <Property Name="Vaxtafotur_interestsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VaxtafoturId" Type="int" Nullable="false" />
+          <Property Name="Interest" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Is_Current" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vaxtaruna">
+          <Key>
+            <PropertyRef Name="VaxtarunaID" />
+          </Key>
+          <Property Name="VaxtarunaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Heiti" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Vextir_greidastID" Type="int" Nullable="false" />
+          <Property Name="Is_deposit" Type="bit" Nullable="false" />
+          <Property Name="Is_fixed" Type="bit" Nullable="false" />
+          <Property Name="Is_indexed" Type="bit" Nullable="false" />
+          <Property Name="VaxtafoturID" Type="int" Nullable="false" />
+          <Property Name="Amount_from" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Amount_to" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Months_tied" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="is_Corp" Type="bit" />
+        </EntityType>
+        <EntityType Name="Vaxtaruna_interests">
+          <Key>
+            <PropertyRef Name="Vaxtaruna_InterestsID" />
+          </Key>
+          <Property Name="Vaxtaruna_InterestsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Spread" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="VaxtarunaID" Type="int" Nullable="false" />
+          <Property Name="is_current" Type="int" />
+        </EntityType>
+        <EntityType Name="Vaxtasaga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VaxtarunaID" Type="int" Nullable="false" />
+          <Property Name="VaxtafoturID" Type="int" Nullable="false" />
+          <Property Name="Spread" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Vaxtafotur" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="VextirTotal" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vextir_greidast">
+          <Key>
+            <PropertyRef Name="Vextir_greidastID" />
+          </Key>
+          <Property Name="Vextir_greidastID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vextir_greiddir" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK_Gjaldskra_Product_Gjaldskra">
+          <End Role="Gjaldskra" Type="Self.Gjaldskra" Multiplicity="1" />
+          <End Role="Gjaldskra_Product" Type="Self.Gjaldskra_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gjaldskra">
+              <PropertyRef Name="GjaldskraID" />
+            </Principal>
+            <Dependent Role="Gjaldskra_Product">
+              <PropertyRef Name="GjaldskraID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gjaldskra_Product_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Gjaldskra_Product" Type="Self.Gjaldskra_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Gjaldskra_Product">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gjaldskra_Product_TegundGjaldID">
+          <End Role="Tegund_gjalds" Type="Self.Tegund_gjalds" Multiplicity="1" />
+          <End Role="Gjaldskra_Product" Type="Self.Gjaldskra_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tegund_gjalds">
+              <PropertyRef Name="TegundGjaldID" />
+            </Principal>
+            <Dependent Role="Gjaldskra_Product">
+              <PropertyRef Name="TegundGjaldID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_indexation_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Product_indexation" Type="Self.Product_indexation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Product_indexation">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_SourceSystem">
+          <End Role="SourceSystem" Type="Self.SourceSystem" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SourceSystem">
+              <PropertyRef Name="SourceSystemID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SourceSystemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductCategory_ProductType">
+          <End Role="ProductType" Type="Self.ProductType" Multiplicity="1" />
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ProductTypeID" />
+            </Principal>
+            <Dependent Role="ProductCategory">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductInterests_ProductIndexation">
+          <End Role="Product_indexation" Type="Self.Product_indexation" Multiplicity="1" />
+          <End Role="ProductInterests" Type="Self.ProductInterests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_indexation">
+              <PropertyRef Name="ProductIndexationID" />
+            </Principal>
+            <Dependent Role="ProductInterests">
+              <PropertyRef Name="Product_indexationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductInterests_Vaxtaruna_interests">
+          <End Role="Vaxtaruna_interests" Type="Self.Vaxtaruna_interests" Multiplicity="1" />
+          <End Role="ProductInterests" Type="Self.ProductInterests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vaxtaruna_interests">
+              <PropertyRef Name="Vaxtaruna_InterestsID" />
+            </Principal>
+            <Dependent Role="ProductInterests">
+              <PropertyRef Name="VaxtaRunaIntID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductPayment_ProductIndexation">
+          <End Role="Product_indexation" Type="Self.Product_indexation" Multiplicity="1" />
+          <End Role="ProductPayment" Type="Self.ProductPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_indexation">
+              <PropertyRef Name="ProductIndexationID" />
+            </Principal>
+            <Dependent Role="ProductPayment">
+              <PropertyRef Name="ProductIndexationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_ProductCategory">
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="ProductCategoryID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vaxtafotur_interests_Vaxtafotur">
+          <End Role="Vaxtafotur" Type="Self.Vaxtafotur" Multiplicity="1" />
+          <End Role="Vaxtafotur_interests" Type="Self.Vaxtafotur_interests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vaxtafotur">
+              <PropertyRef Name="VaxtafoturID" />
+            </Principal>
+            <Dependent Role="Vaxtafotur_interests">
+              <PropertyRef Name="VaxtafoturId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vaxtaruna_interests_Vaxtaruna">
+          <End Role="Vaxtaruna" Type="Self.Vaxtaruna" Multiplicity="1" />
+          <End Role="Vaxtaruna_interests" Type="Self.Vaxtaruna_interests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vaxtaruna">
+              <PropertyRef Name="VaxtarunaID" />
+            </Principal>
+            <Dependent Role="Vaxtaruna_interests">
+              <PropertyRef Name="VaxtarunaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vaxtaruna_Vaxtafotur">
+          <End Role="Vaxtafotur" Type="Self.Vaxtafotur" Multiplicity="1" />
+          <End Role="Vaxtaruna" Type="Self.Vaxtaruna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vaxtafotur">
+              <PropertyRef Name="VaxtafoturID" />
+            </Principal>
+            <Dependent Role="Vaxtaruna">
+              <PropertyRef Name="VaxtafoturID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vaxtaruna_Vextir_greidast">
+          <End Role="Vextir_greidast" Type="Self.Vextir_greidast" Multiplicity="1" />
+          <End Role="Vaxtaruna" Type="Self.Vaxtaruna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vextir_greidast">
+              <PropertyRef Name="Vextir_greidastID" />
+            </Principal>
+            <Dependent Role="Vaxtaruna">
+              <PropertyRef Name="Vextir_greidastID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VaxtaDbModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gjaldskra" EntityType="Self.Gjaldskra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gjaldskra_Product" EntityType="Self.Gjaldskra_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentMethod" EntityType="Self.PaymentMethod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product_indexation" EntityType="Self.Product_indexation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductInterests" EntityType="Self.ProductInterests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductPayment" EntityType="Self.ProductPayment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SourceSystem" EntityType="Self.SourceSystem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tegund_gjalds" EntityType="Self.Tegund_gjalds" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vaxtafotur" EntityType="Self.Vaxtafotur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vaxtafotur_interests" EntityType="Self.Vaxtafotur_interests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vaxtaruna" EntityType="Self.Vaxtaruna" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vaxtaruna_interests" EntityType="Self.Vaxtaruna_interests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vaxtasaga" EntityType="Self.Vaxtasaga" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vextir_greidast" EntityType="Self.Vextir_greidast" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Gjaldskra_Product_Gjaldskra" Association="Self.FK_Gjaldskra_Product_Gjaldskra">
+            <End Role="Gjaldskra" EntitySet="Gjaldskra" />
+            <End Role="Gjaldskra_Product" EntitySet="Gjaldskra_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gjaldskra_Product_Product" Association="Self.FK_Gjaldskra_Product_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Gjaldskra_Product" EntitySet="Gjaldskra_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gjaldskra_Product_TegundGjaldID" Association="Self.FK_Gjaldskra_Product_TegundGjaldID">
+            <End Role="Tegund_gjalds" EntitySet="Tegund_gjalds" />
+            <End Role="Gjaldskra_Product" EntitySet="Gjaldskra_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_indexation_Product" Association="Self.FK_Product_indexation_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Product_indexation" EntitySet="Product_indexation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_SourceSystem" Association="Self.FK_Product_SourceSystem">
+            <End Role="SourceSystem" EntitySet="SourceSystem" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductCategory_ProductType" Association="Self.FK_ProductCategory_ProductType">
+            <End Role="ProductType" EntitySet="ProductType" />
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductInterests_ProductIndexation" Association="Self.FK_ProductInterests_ProductIndexation">
+            <End Role="Product_indexation" EntitySet="Product_indexation" />
+            <End Role="ProductInterests" EntitySet="ProductInterests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductInterests_Vaxtaruna_interests" Association="Self.FK_ProductInterests_Vaxtaruna_interests">
+            <End Role="Vaxtaruna_interests" EntitySet="Vaxtaruna_interests" />
+            <End Role="ProductInterests" EntitySet="ProductInterests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductPayment_ProductIndexation" Association="Self.FK_ProductPayment_ProductIndexation">
+            <End Role="Product_indexation" EntitySet="Product_indexation" />
+            <End Role="ProductPayment" EntitySet="ProductPayment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ProductCategory" Association="Self.FK_Products_ProductCategory">
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vaxtafotur_interests_Vaxtafotur" Association="Self.FK_Vaxtafotur_interests_Vaxtafotur">
+            <End Role="Vaxtafotur" EntitySet="Vaxtafotur" />
+            <End Role="Vaxtafotur_interests" EntitySet="Vaxtafotur_interests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vaxtaruna_interests_Vaxtaruna" Association="Self.FK_Vaxtaruna_interests_Vaxtaruna">
+            <End Role="Vaxtaruna" EntitySet="Vaxtaruna" />
+            <End Role="Vaxtaruna_interests" EntitySet="Vaxtaruna_interests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vaxtaruna_Vaxtafotur" Association="Self.FK_Vaxtaruna_Vaxtafotur">
+            <End Role="Vaxtafotur" EntitySet="Vaxtafotur" />
+            <End Role="Vaxtaruna" EntitySet="Vaxtaruna" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vaxtaruna_Vextir_greidast" Association="Self.FK_Vaxtaruna_Vextir_greidast">
+            <End Role="Vextir_greidast" EntitySet="Vextir_greidast" />
+            <End Role="Vaxtaruna" EntitySet="Vaxtaruna" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VaxtaDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vaxtafotur">
+          <Key>
+            <PropertyRef Name="VaxtafoturID" />
+          </Key>
+          <Property Name="VaxtafoturID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Heiti" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Is_Indexed" Type="Boolean" />
+          <NavigationProperty Name="Vaxtafotur_interests" Relationship="Self.FK_Vaxtafotur_interests_Vaxtafotur" FromRole="Vaxtafotur" ToRole="Vaxtafotur_interests" />
+          <NavigationProperty Name="Vaxtarunas" Relationship="VaxtaDbModel.FK_Vaxtaruna_Vaxtafotur" FromRole="Vaxtafotur" ToRole="Vaxtaruna" />
+          <Property Name="is_active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Vaxtafotur_interests">
+          <Key>
+            <PropertyRef Name="Vaxtafotur_interestsID" />
+          </Key>
+          <Property Name="Vaxtafotur_interestsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VaxtafoturId" Type="Int32" Nullable="false" />
+          <Property Name="Interest" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Is_Current" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Vaxtafotur" Relationship="Self.FK_Vaxtafotur_interests_Vaxtafotur" FromRole="Vaxtafotur_interests" ToRole="Vaxtafotur" />
+        </EntityType>
+        <EntityType Name="Vaxtaruna">
+          <Key>
+            <PropertyRef Name="VaxtarunaID" />
+          </Key>
+          <Property Name="VaxtarunaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Heiti" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Vextir_greidastID" Type="Int32" Nullable="false" />
+          <Property Name="Is_deposit" Type="Boolean" Nullable="false" />
+          <Property Name="Is_fixed" Type="Boolean" Nullable="false" />
+          <Property Name="Is_indexed" Type="Boolean" Nullable="false" />
+          <Property Name="VaxtafoturID" Type="Int32" Nullable="false" />
+          <Property Name="Amount_from" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Amount_to" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Months_tied" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="is_Corp" Type="Boolean" />
+          <NavigationProperty Name="Vaxtaruna_interests" Relationship="Self.FK_Vaxtaruna_interests_Vaxtaruna" FromRole="Vaxtaruna" ToRole="Vaxtaruna_interests" />
+          <NavigationProperty Name="Vextir_greidast" Relationship="VaxtaDbModel.FK_Vaxtaruna_Vextir_greidast" FromRole="Vaxtaruna" ToRole="Vextir_greidast" />
+          <NavigationProperty Name="Vaxtafotur" Relationship="VaxtaDbModel.FK_Vaxtaruna_Vaxtafotur" FromRole="Vaxtaruna" ToRole="Vaxtafotur" />
+        </EntityType>
+        <EntityType Name="Vaxtaruna_interests">
+          <Key>
+            <PropertyRef Name="Vaxtaruna_InterestsID" />
+          </Key>
+          <Property Name="Vaxtaruna_InterestsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Spread" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VaxtarunaID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Vaxtaruna" Relationship="Self.FK_Vaxtaruna_interests_Vaxtaruna" FromRole="Vaxtaruna_interests" ToRole="Vaxtaruna" />
+          <Property Name="is_current" Type="Int32" />
+          <NavigationProperty Name="ProductInterests" Relationship="VaxtaDbModel.FK_ProductInterests_Vaxtaruna_interests" FromRole="Vaxtaruna_interests" ToRole="ProductInterest" />
+        </EntityType>
+        <EntityType Name="Vextir_greidast">
+          <Key>
+            <PropertyRef Name="Vextir_greidastID" />
+          </Key>
+          <Property Name="Vextir_greidastID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vextir_greiddir" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Vaxtarunas" Relationship="VaxtaDbModel.FK_Vaxtaruna_Vextir_greidast" FromRole="Vextir_greidast" ToRole="Vaxtaruna" />
+        </EntityType>
+        <Association Name="FK_Vaxtafotur_interests_Vaxtafotur">
+          <End Role="Vaxtafotur" Type="Self.Vaxtafotur" Multiplicity="1" />
+          <End Role="Vaxtafotur_interests" Type="Self.Vaxtafotur_interests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vaxtafotur">
+              <PropertyRef Name="VaxtafoturID" />
+            </Principal>
+            <Dependent Role="Vaxtafotur_interests">
+              <PropertyRef Name="VaxtafoturId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vaxtaruna_interests_Vaxtaruna">
+          <End Role="Vaxtaruna" Type="Self.Vaxtaruna" Multiplicity="1" />
+          <End Role="Vaxtaruna_interests" Type="Self.Vaxtaruna_interests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vaxtaruna">
+              <PropertyRef Name="VaxtarunaID" />
+            </Principal>
+            <Dependent Role="Vaxtaruna_interests">
+              <PropertyRef Name="VaxtarunaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VaxtaDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
+          <EntitySet Name="Vaxtafoturs" EntityType="Self.Vaxtafotur" />
+          <EntitySet Name="Vaxtafotur_interests" EntityType="Self.Vaxtafotur_interests" />
+          <EntitySet Name="Vaxtarunas" EntityType="Self.Vaxtaruna" />
+          <EntitySet Name="Vaxtaruna_interests" EntityType="Self.Vaxtaruna_interests" />
+          <EntitySet Name="Vextir_greidast" EntityType="Self.Vextir_greidast" />
+          <AssociationSet Name="FK_Vaxtafotur_interests_Vaxtafotur" Association="Self.FK_Vaxtafotur_interests_Vaxtafotur">
+            <End Role="Vaxtafotur" EntitySet="Vaxtafoturs" />
+            <End Role="Vaxtafotur_interests" EntitySet="Vaxtafotur_interests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vaxtaruna_interests_Vaxtaruna" Association="Self.FK_Vaxtaruna_interests_Vaxtaruna">
+            <End Role="Vaxtaruna" EntitySet="Vaxtarunas" />
+            <End Role="Vaxtaruna_interests" EntitySet="Vaxtaruna_interests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vaxtaruna_Vextir_greidast" Association="VaxtaDbModel.FK_Vaxtaruna_Vextir_greidast">
+            <End Role="Vextir_greidast" EntitySet="Vextir_greidast" />
+            <End Role="Vaxtaruna" EntitySet="Vaxtarunas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vaxtaruna_Vaxtafotur" Association="VaxtaDbModel.FK_Vaxtaruna_Vaxtafotur">
+            <End Role="Vaxtafotur" EntitySet="Vaxtafoturs" />
+            <End Role="Vaxtaruna" EntitySet="Vaxtarunas" />
+          </AssociationSet>
+          <EntitySet Name="Vaxtasagas" EntityType="VaxtaDbModel.Vaxtasaga" />
+          <EntitySet Name="Products" EntityType="VaxtaDbModel.Product" />
+          <EntitySet Name="ProductCategories" EntityType="VaxtaDbModel.ProductCategory" />
+          <AssociationSet Name="FK_Products_ProductCategory" Association="VaxtaDbModel.FK_Products_ProductCategory">
+            <End Role="ProductCategory" EntitySet="ProductCategories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <EntitySet Name="ProductTypes" EntityType="VaxtaDbModel.ProductType" />
+          <AssociationSet Name="FK_ProductCategory_ProductType" Association="VaxtaDbModel.FK_ProductCategory_ProductType">
+            <End Role="ProductType" EntitySet="ProductTypes" />
+            <End Role="ProductCategory" EntitySet="ProductCategories" />
+          </AssociationSet>
+          <EntitySet Name="PaymentMethods" EntityType="VaxtaDbModel.PaymentMethod" />
+          <EntitySet Name="Product_indexation" EntityType="VaxtaDbModel.Product_indexation" />
+          <EntitySet Name="ProductInterests" EntityType="VaxtaDbModel.ProductInterest" />
+          <EntitySet Name="ProductPayments" EntityType="VaxtaDbModel.ProductPayment" />
+          <AssociationSet Name="FK_Product_indexation_Product" Association="VaxtaDbModel.FK_Product_indexation_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Product_indexation" EntitySet="Product_indexation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductInterests_ProductIndexation" Association="VaxtaDbModel.FK_ProductInterests_ProductIndexation">
+            <End Role="Product_indexation" EntitySet="Product_indexation" />
+            <End Role="ProductInterest" EntitySet="ProductInterests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductPayment_ProductIndexation" Association="VaxtaDbModel.FK_ProductPayment_ProductIndexation">
+            <End Role="Product_indexation" EntitySet="Product_indexation" />
+            <End Role="ProductPayment" EntitySet="ProductPayments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductInterests_Vaxtaruna_interests" Association="VaxtaDbModel.FK_ProductInterests_Vaxtaruna_interests">
+            <End Role="Vaxtaruna_interests" EntitySet="Vaxtaruna_interests" />
+            <End Role="ProductInterest" EntitySet="ProductInterests" />
+          </AssociationSet>
+          <EntitySet Name="Gjaldskras" EntityType="VaxtaDbModel.Gjaldskra" />
+          <EntitySet Name="Gjaldskra_Product" EntityType="VaxtaDbModel.Gjaldskra_Product" />
+          <EntitySet Name="Tegund_gjalds" EntityType="VaxtaDbModel.Tegund_gjalds" />
+          <AssociationSet Name="FK_Gjaldskra_Product_Gjaldskra" Association="VaxtaDbModel.FK_Gjaldskra_Product_Gjaldskra">
+            <End Role="Gjaldskra" EntitySet="Gjaldskras" />
+            <End Role="Gjaldskra_Product" EntitySet="Gjaldskra_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gjaldskra_Product_Product" Association="VaxtaDbModel.FK_Gjaldskra_Product_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Gjaldskra_Product" EntitySet="Gjaldskra_Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gjaldskra_Product_TegundGjaldID" Association="VaxtaDbModel.FK_Gjaldskra_Product_TegundGjaldID">
+            <End Role="Tegund_gjalds" EntitySet="Tegund_gjalds" />
+            <End Role="Gjaldskra_Product" EntitySet="Gjaldskra_Product" />
+          </AssociationSet>
+          <EntitySet Name="SourceSystems" EntityType="VaxtaDbModel.SourceSystem" />
+          <AssociationSet Name="FK_Product_SourceSystem" Association="VaxtaDbModel.FK_Product_SourceSystem">
+            <End Role="SourceSystem" EntitySet="SourceSystems" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          </EntityContainer>
+        <Association Name="FK_Vaxtaruna_Vextir_greidast">
+          <End Type="VaxtaDbModel.Vextir_greidast" Role="Vextir_greidast" Multiplicity="1" />
+          <End Type="VaxtaDbModel.Vaxtaruna" Role="Vaxtaruna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vextir_greidast">
+              <PropertyRef Name="Vextir_greidastID" />
+            </Principal>
+            <Dependent Role="Vaxtaruna">
+              <PropertyRef Name="Vextir_greidastID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vaxtaruna_Vaxtafotur">
+          <End Type="VaxtaDbModel.Vaxtafotur" Role="Vaxtafotur" Multiplicity="1" />
+          <End Type="VaxtaDbModel.Vaxtaruna" Role="Vaxtaruna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vaxtafotur">
+              <PropertyRef Name="VaxtafoturID" />
+            </Principal>
+            <Dependent Role="Vaxtaruna">
+              <PropertyRef Name="VaxtafoturID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Vaxtasaga">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VaxtarunaID" Type="Int32" Nullable="false" />
+          <Property Name="VaxtafoturID" Type="Int32" Nullable="false" />
+          <Property Name="Spread" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Vaxtafotur" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VextirTotal" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ProductCategoryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProductCategory" Relationship="VaxtaDbModel.FK_Products_ProductCategory" FromRole="Product" ToRole="ProductCategory" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="Product_indexation" Relationship="VaxtaDbModel.FK_Product_indexation_Product" FromRole="Product" ToRole="Product_indexation" />
+          <NavigationProperty Name="Gjaldskra_Product" Relationship="VaxtaDbModel.FK_Gjaldskra_Product_Product" FromRole="Product" ToRole="Gjaldskra_Product" />
+          <Property Name="SourceSystemID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SourceSystem" Relationship="VaxtaDbModel.FK_Product_SourceSystem" FromRole="Product" ToRole="SourceSystem" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="ProductCategoryID" />
+          </Key>
+          <Property Name="ProductCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Products" Relationship="VaxtaDbModel.FK_Products_ProductCategory" FromRole="ProductCategory" ToRole="Product" />
+          <Property Name="ProductTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProductType" Relationship="VaxtaDbModel.FK_ProductCategory_ProductType" FromRole="ProductCategory" ToRole="ProductType" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="is_individual_product" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_Products_ProductCategory">
+          <End Type="VaxtaDbModel.ProductCategory" Role="ProductCategory" Multiplicity="1" />
+          <End Type="VaxtaDbModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="ProductCategoryID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProductType">
+          <Key>
+            <PropertyRef Name="ProductTypeID" />
+          </Key>
+          <Property Name="ProductTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProductCategories" Relationship="VaxtaDbModel.FK_ProductCategory_ProductType" FromRole="ProductType" ToRole="ProductCategory" />
+          <Property Name="Has_downpayment" Type="Boolean" Nullable="false" />
+          <Property Name="Has_collateral" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ProductCategory_ProductType">
+          <End Type="VaxtaDbModel.ProductType" Role="ProductType" Multiplicity="1" />
+          <End Type="VaxtaDbModel.ProductCategory" Role="ProductCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ProductTypeID" />
+            </Principal>
+            <Dependent Role="ProductCategory">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="PaymentMethodID" />
+          </Key>
+          <Property Name="PaymentMethodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentMethodType" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Product_indexation">
+          <Key>
+            <PropertyRef Name="ProductIndexationID" />
+          </Key>
+          <Property Name="ProductIndexationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="is_Indexed" Type="Boolean" Nullable="false" />
+          <Property Name="MAX_number_payments" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="MIN_number_payments" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="Product" Relationship="VaxtaDbModel.FK_Product_indexation_Product" FromRole="Product_indexation" ToRole="Product" />
+          <NavigationProperty Name="ProductInterests" Relationship="VaxtaDbModel.FK_ProductInterests_ProductIndexation" FromRole="Product_indexation" ToRole="ProductInterest" />
+          <NavigationProperty Name="ProductPayments" Relationship="VaxtaDbModel.FK_ProductPayment_ProductIndexation" FromRole="Product_indexation" ToRole="ProductPayment" />
+        </EntityType>
+        <EntityType Name="ProductInterest">
+          <Key>
+            <PropertyRef Name="ProductInterestsID" />
+          </Key>
+          <Property Name="ProductInterestsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_indexationID" Type="Int32" Nullable="false" />
+          <Property Name="VaxtaRunaIntID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product_indexation" Relationship="VaxtaDbModel.FK_ProductInterests_ProductIndexation" FromRole="ProductInterest" ToRole="Product_indexation" />
+          <NavigationProperty Name="Vaxtaruna_interests" Relationship="VaxtaDbModel.FK_ProductInterests_Vaxtaruna_interests" FromRole="ProductInterest" ToRole="Vaxtaruna_interests" />
+        </EntityType>
+        <EntityType Name="ProductPayment">
+          <Key>
+            <PropertyRef Name="ProductPaymentID" />
+          </Key>
+          <Property Name="ProductPaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductIndexationID" Type="Int32" Nullable="false" />
+          <Property Name="PaymentMethodID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product_indexation" Relationship="VaxtaDbModel.FK_ProductPayment_ProductIndexation" FromRole="ProductPayment" ToRole="Product_indexation" />
+          <Property Name="TemplateID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Product_indexation_Product">
+          <End Type="VaxtaDbModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="VaxtaDbModel.Product_indexation" Role="Product_indexation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Product_indexation">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductInterests_ProductIndexation">
+          <End Type="VaxtaDbModel.Product_indexation" Role="Product_indexation" Multiplicity="1" />
+          <End Type="VaxtaDbModel.ProductInterest" Role="ProductInterest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_indexation">
+              <PropertyRef Name="ProductIndexationID" />
+            </Principal>
+            <Dependent Role="ProductInterest">
+              <PropertyRef Name="Product_indexationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductPayment_ProductIndexation">
+          <End Type="VaxtaDbModel.Product_indexation" Role="Product_indexation" Multiplicity="1" />
+          <End Type="VaxtaDbModel.ProductPayment" Role="ProductPayment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product_indexation">
+              <PropertyRef Name="ProductIndexationID" />
+            </Principal>
+            <Dependent Role="ProductPayment">
+              <PropertyRef Name="ProductIndexationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductInterests_Vaxtaruna_interests">
+          <End Type="VaxtaDbModel.Vaxtaruna_interests" Role="Vaxtaruna_interests" Multiplicity="1" />
+          <End Type="VaxtaDbModel.ProductInterest" Role="ProductInterest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vaxtaruna_interests">
+              <PropertyRef Name="Vaxtaruna_InterestsID" />
+            </Principal>
+            <Dependent Role="ProductInterest">
+              <PropertyRef Name="VaxtaRunaIntID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Gjaldskra">
+          <Key>
+            <PropertyRef Name="GjaldskraID" />
+          </Key>
+          <Property Name="GjaldskraID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Númer" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Heiti" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Fjárhæð" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="Gjaldskra_Product" Relationship="VaxtaDbModel.FK_Gjaldskra_Product_Gjaldskra" FromRole="Gjaldskra" ToRole="Gjaldskra_Product" />
+        </EntityType>
+        <EntityType Name="Gjaldskra_Product">
+          <Key>
+            <PropertyRef Name="GjaldskraProductID" />
+          </Key>
+          <Property Name="GjaldskraProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="GjaldskraID" Type="Int32" Nullable="false" />
+          <Property Name="TegundGjaldID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Gjaldskra" Relationship="VaxtaDbModel.FK_Gjaldskra_Product_Gjaldskra" FromRole="Gjaldskra_Product" ToRole="Gjaldskra" />
+          <NavigationProperty Name="Product" Relationship="VaxtaDbModel.FK_Gjaldskra_Product_Product" FromRole="Gjaldskra_Product" ToRole="Product" />
+          <NavigationProperty Name="Tegund_gjalds" Relationship="VaxtaDbModel.FK_Gjaldskra_Product_TegundGjaldID" FromRole="Gjaldskra_Product" ToRole="Tegund_gjalds" />
+        </EntityType>
+        <EntityType Name="Tegund_gjalds">
+          <Key>
+            <PropertyRef Name="TegundGjaldID" />
+          </Key>
+          <Property Name="TegundGjaldID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tegund_Gjalds1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Gjaldskra_Product" Relationship="VaxtaDbModel.FK_Gjaldskra_Product_TegundGjaldID" FromRole="Tegund_gjalds" ToRole="Gjaldskra_Product" />
+        </EntityType>
+        <Association Name="FK_Gjaldskra_Product_Gjaldskra">
+          <End Type="VaxtaDbModel.Gjaldskra" Role="Gjaldskra" Multiplicity="1" />
+          <End Type="VaxtaDbModel.Gjaldskra_Product" Role="Gjaldskra_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gjaldskra">
+              <PropertyRef Name="GjaldskraID" />
+            </Principal>
+            <Dependent Role="Gjaldskra_Product">
+              <PropertyRef Name="GjaldskraID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gjaldskra_Product_Product">
+          <End Type="VaxtaDbModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="VaxtaDbModel.Gjaldskra_Product" Role="Gjaldskra_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Gjaldskra_Product">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gjaldskra_Product_TegundGjaldID">
+          <End Type="VaxtaDbModel.Tegund_gjalds" Role="Tegund_gjalds" Multiplicity="1" />
+          <End Type="VaxtaDbModel.Gjaldskra_Product" Role="Gjaldskra_Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tegund_gjalds">
+              <PropertyRef Name="TegundGjaldID" />
+            </Principal>
+            <Dependent Role="Gjaldskra_Product">
+              <PropertyRef Name="TegundGjaldID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SourceSystem">
+          <Key>
+            <PropertyRef Name="SourceSystemID" />
+          </Key>
+          <Property Name="SourceSystemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SourceSystemName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Products" Relationship="VaxtaDbModel.FK_Product_SourceSystem" FromRole="SourceSystem" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_Product_SourceSystem">
+          <End Type="VaxtaDbModel.SourceSystem" Role="SourceSystem" Multiplicity="1" />
+          <End Type="VaxtaDbModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SourceSystem">
+              <PropertyRef Name="SourceSystemID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SourceSystemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VaxtaDbModelStoreContainer" CdmEntityContainer="VaxtaDbEntities">
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="VaxtaDbModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vaxtafoturs">
+            <EntityTypeMapping TypeName="VaxtaDbModel.Vaxtafotur">
+              <MappingFragment StoreEntitySet="Vaxtafotur">
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="VaxtafoturID" ColumnName="VaxtafoturID" />
+                <ScalarProperty Name="Heiti" ColumnName="Heiti" />
+                <ScalarProperty Name="Is_Indexed" ColumnName="Is_Indexed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vaxtafotur_interests">
+            <EntityTypeMapping TypeName="VaxtaDbModel.Vaxtafotur_interests">
+              <MappingFragment StoreEntitySet="Vaxtafotur_interests">
+                <ScalarProperty Name="Vaxtafotur_interestsID" ColumnName="Vaxtafotur_interestsID" />
+                <ScalarProperty Name="VaxtafoturId" ColumnName="VaxtafoturId" />
+                <ScalarProperty Name="Interest" ColumnName="Interest" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Is_Current" ColumnName="Is_Current" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vaxtarunas">
+            <EntityTypeMapping TypeName="VaxtaDbModel.Vaxtaruna">
+              <MappingFragment StoreEntitySet="Vaxtaruna">
+                <ScalarProperty Name="VaxtarunaID" ColumnName="VaxtarunaID" />
+                <ScalarProperty Name="Heiti" ColumnName="Heiti" />
+                <ScalarProperty Name="Vextir_greidastID" ColumnName="Vextir_greidastID" />
+                <ScalarProperty Name="Is_deposit" ColumnName="Is_deposit" />
+                <ScalarProperty Name="Is_fixed" ColumnName="Is_fixed" />
+                <ScalarProperty Name="Is_indexed" ColumnName="Is_indexed" />
+                <ScalarProperty Name="VaxtafoturID" ColumnName="VaxtafoturID" />
+                <ScalarProperty Name="Amount_from" ColumnName="Amount_from" />
+                <ScalarProperty Name="Amount_to" ColumnName="Amount_to" />
+                <ScalarProperty Name="Months_tied" ColumnName="Months_tied" />
+                <ScalarProperty Name="is_Corp" ColumnName="is_Corp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vaxtaruna_interests">
+            <EntityTypeMapping TypeName="VaxtaDbModel.Vaxtaruna_interests">
+              <MappingFragment StoreEntitySet="Vaxtaruna_interests">
+                <ScalarProperty Name="is_current" ColumnName="is_current" />
+                <ScalarProperty Name="Vaxtaruna_InterestsID" ColumnName="Vaxtaruna_InterestsID" />
+                <ScalarProperty Name="Spread" ColumnName="Spread" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="VaxtarunaID" ColumnName="VaxtarunaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vextir_greidast">
+            <EntityTypeMapping TypeName="VaxtaDbModel.Vextir_greidast">
+              <MappingFragment StoreEntitySet="Vextir_greidast">
+                <ScalarProperty Name="Vextir_greidastID" ColumnName="Vextir_greidastID" />
+                <ScalarProperty Name="Vextir_greiddir" ColumnName="Vextir_greiddir" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vaxtasagas">
+            <EntityTypeMapping TypeName="VaxtaDbModel.Vaxtasaga">
+              <MappingFragment StoreEntitySet="Vaxtasaga">
+                <ScalarProperty Name="VextirTotal" ColumnName="VextirTotal" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Vaxtafotur" ColumnName="Vaxtafotur" />
+                <ScalarProperty Name="Spread" ColumnName="Spread" />
+                <ScalarProperty Name="VaxtafoturID" ColumnName="VaxtafoturID" />
+                <ScalarProperty Name="VaxtarunaID" ColumnName="VaxtarunaID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="VaxtaDbModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="SourceSystemID" ColumnName="SourceSystemID" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ProductCategoryID" ColumnName="ProductCategoryID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCategories">
+            <EntityTypeMapping TypeName="VaxtaDbModel.ProductCategory">
+              <MappingFragment StoreEntitySet="ProductCategory">
+                <ScalarProperty Name="is_individual_product" ColumnName="is_individual_product" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+                <ScalarProperty Name="ProductCategoryID" ColumnName="ProductCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductTypes">
+            <EntityTypeMapping TypeName="VaxtaDbModel.ProductType">
+              <MappingFragment StoreEntitySet="ProductType">
+                <ScalarProperty Name="Has_collateral" ColumnName="Has_collateral" />
+                <ScalarProperty Name="Has_downpayment" ColumnName="Has_downpayment" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMethods">
+            <EntityTypeMapping TypeName="VaxtaDbModel.PaymentMethod">
+              <MappingFragment StoreEntitySet="PaymentMethod">
+                <ScalarProperty Name="PaymentMethodType" ColumnName="PaymentMethodType" />
+                <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product_indexation">
+            <EntityTypeMapping TypeName="VaxtaDbModel.Product_indexation">
+              <MappingFragment StoreEntitySet="Product_indexation">
+                <ScalarProperty Name="MIN_number_payments" ColumnName="MIN_number_payments" />
+                <ScalarProperty Name="MAX_number_payments" ColumnName="MAX_number_payments" />
+                <ScalarProperty Name="is_Indexed" ColumnName="is_Indexed" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductIndexationID" ColumnName="ProductIndexationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductInterests">
+            <EntityTypeMapping TypeName="VaxtaDbModel.ProductInterest">
+              <MappingFragment StoreEntitySet="ProductInterests">
+                <ScalarProperty Name="VaxtaRunaIntID" ColumnName="VaxtaRunaIntID" />
+                <ScalarProperty Name="Product_indexationID" ColumnName="Product_indexationID" />
+                <ScalarProperty Name="ProductInterestsID" ColumnName="ProductInterestsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductPayments">
+            <EntityTypeMapping TypeName="VaxtaDbModel.ProductPayment">
+              <MappingFragment StoreEntitySet="ProductPayment">
+                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
+                <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+                <ScalarProperty Name="ProductIndexationID" ColumnName="ProductIndexationID" />
+                <ScalarProperty Name="ProductPaymentID" ColumnName="ProductPaymentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gjaldskras">
+            <EntityTypeMapping TypeName="VaxtaDbModel.Gjaldskra">
+              <MappingFragment StoreEntitySet="Gjaldskra">
+                <ScalarProperty Name="Fjárhæð" ColumnName="Fjárhæð" />
+                <ScalarProperty Name="Heiti" ColumnName="Heiti" />
+                <ScalarProperty Name="Númer" ColumnName="Númer" />
+                <ScalarProperty Name="GjaldskraID" ColumnName="GjaldskraID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gjaldskra_Product">
+            <EntityTypeMapping TypeName="VaxtaDbModel.Gjaldskra_Product">
+              <MappingFragment StoreEntitySet="Gjaldskra_Product">
+                <ScalarProperty Name="TegundGjaldID" ColumnName="TegundGjaldID" />
+                <ScalarProperty Name="GjaldskraID" ColumnName="GjaldskraID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="GjaldskraProductID" ColumnName="GjaldskraProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tegund_gjalds">
+            <EntityTypeMapping TypeName="VaxtaDbModel.Tegund_gjalds">
+              <MappingFragment StoreEntitySet="Tegund_gjalds">
+                <ScalarProperty Name="Tegund_Gjalds1" ColumnName="Tegund_Gjalds" />
+                <ScalarProperty Name="TegundGjaldID" ColumnName="TegundGjaldID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SourceSystems">
+            <EntityTypeMapping TypeName="VaxtaDbModel.SourceSystem">
+              <MappingFragment StoreEntitySet="SourceSystem">
+                <ScalarProperty Name="SourceSystemName" ColumnName="SourceSystemName" />
+                <ScalarProperty Name="SourceSystemID" ColumnName="SourceSystemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

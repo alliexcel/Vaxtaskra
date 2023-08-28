@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Vaxtaskra.Models.vaxtasagas_full>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().DateChange)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().VaxtafoturID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().VaxtarunaID)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Vaxtafotur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Vaxtaruna)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().is_indexed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().is_lending)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Vaxtafotur_interests)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Vaxtaruna_interests)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Vextir_total)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateChange)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.VaxtafoturID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.VaxtarunaID)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Vaxtafotur)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Vaxtaruna)
+    </td>
+    <td>
+        @{ if (item.is_indexed)
+            {
+                <p>1</p>
+            }
+            else
+            {
+                <p>0</p>
+            }
+        }
+    </td>
+    <td>
+        @{ if (item.is_lending)
+            {
+                <p>1</p>
+            }
+            else
+            {
+                <p>0</p>
+            }
+        }
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Vaxtafotur_interests)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Vaxtaruna_interests)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Vextir_total)
+    </td>
+    <td>
+    </td>
+</tr>
+}
+
+</table>

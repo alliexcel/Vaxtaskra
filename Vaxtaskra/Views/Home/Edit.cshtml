@@ -1,0 +1,121 @@
+﻿@model Vaxtaskra.Models.Vaxtaruna_all
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Breyta vöxtum</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+    <div class="form-group">
+
+        @Html.HiddenFor(Model => Model.VaxtarunaInterests.VaxtarunaID)
+        @Html.HiddenFor(Model => Model.Vaxtafotur.VaxtafoturID)
+        @Html.HiddenFor(Model => Model.VaxtarunaInterests.Vaxtaruna_InterestsID)
+
+        <table class="table">
+            <tr>
+                <th>
+                    Tegund
+                </th>
+                <th>
+                    Heiti
+                </th>
+                <th>
+                    Vextir
+                </th>
+                <th>
+
+                </th>
+
+            </tr>
+
+            <tr>
+                <td>
+                    Vaxtafótur
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Vaxtafotur.Heiti)
+                </td>
+                <td>
+                    <div class="col-md-10">
+                        @Html.DisplayFor(Model => Model.Vaxtafotur_interests.Interest, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Vaxtafotur_interests.Interest, "", new { @class = "text-danger" })
+                    </div>
+                </td>
+                <td>
+                    @Html.ActionLink("Breyta vaxtafæti","Edit" ,"Vaxtafoturs", new { id = Model.Vaxtafotur_interests.VaxtafoturId }, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Álag
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Vaxtaruna.Heiti)
+                </td>
+                <td>
+                    <div class="col-md-10">
+                        @Html.EditorFor(Model => Model.SpreadString, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SpreadString, "", new { @class = "text-danger" })
+                    </div>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                    Vextir samtals
+                </td>
+                <td>
+                    <div class="col-md-10">
+                        @(Model.Vaxtafotur_interests.Interest + Model.VaxtarunaInterests.Spread)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                </td>
+                <td>
+                    Vextir greiðast
+                </td>
+                <td>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(Model => Model.Vaxtaruna.Vextir_greidastID, new SelectList(ViewBag.VextirGreidast, "Vextir_greidastID", "Vextir_greiddir"), new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+
+
+    
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-6 col-md-10">
+            <input type="submit" value="Vista breytt álag" class="btn btn-default" />
+        </div>
+    </div>
+
+
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,40 @@
+﻿@model Vaxtaskra.Models.ProductInterest
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ProductInterest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Product_indexation.ProductIndexationID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product_indexation.ProductIndexationID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vaxtaruna_interests.Vaxtaruna_InterestsID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vaxtaruna_interests.Vaxtaruna_InterestsID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

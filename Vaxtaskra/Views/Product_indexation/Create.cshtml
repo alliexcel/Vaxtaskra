@@ -1,0 +1,94 @@
+﻿@model Vaxtaskra.Models.Product_indexation_extra
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>@ViewBag.Product.ProductName </h4>
+    <hr />
+    
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.product_indexation.is_Indexed, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.DropDownListFor(model => model.verðtryggt, new SelectList(ViewBag.indexed, "IndexedType", "IndexedType"))
+                @Html.ValidationMessageFor(model => model.verðtryggt, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(Model => Model.product_indexation.ProductID, new { Value = (Int32)ViewBag.Product.ProductID })
+    <div class="form-group">
+        @Html.LabelFor(model => model.product_indexation.MAX_number_payments, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.product_indexation.MAX_number_payments, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.product_indexation.MAX_number_payments, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.product_indexation.MIN_number_payments, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.product_indexation.MIN_number_payments, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.product_indexation.MIN_number_payments, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<table class="table">
+<tr>
+    <th>
+        is_indexed
+    </th>
+    <th>
+        Max_number_payments
+    </th>
+    <th>
+        Min_number_payments
+    </th>
+</tr>
+    @foreach (var i in ViewBag.prodlist)
+    {
+        <tr>
+            <td>
+                @i.is_Indexed
+            </td>
+            <td>
+                @i.MAX_number_payments
+            </td>
+            <td>
+                @i.MIN_number_payments
+            </td>
+            <td>
+                @Html.ActionLink("Set_interests", "Create", "ProductInterests",new { id = i.ProductIndexationID }, new {@class = "btn btn-primary" })
+            </td>
+        </tr>
+    }
+
+
+</table>
+
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

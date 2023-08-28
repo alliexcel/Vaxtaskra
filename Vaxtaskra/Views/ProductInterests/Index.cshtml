@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Vaxtaskra.Models.ProductInterest>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_indexation.ProductIndexationID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vaxtaruna_interests.Vaxtaruna_InterestsID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_indexation.ProductIndexationID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vaxtaruna_interests.Vaxtaruna_InterestsID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProductInterestsID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProductInterestsID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProductInterestsID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Vaxtaskra.Models.Vaxtaruna>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Heiti)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Is_deposit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Is_fixed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Is_indexed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount_from)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount_to)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Months_tied)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.is_Corp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vextir_greidast.Vextir_greiddir)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vaxtafotur.Heiti)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Heiti)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Is_deposit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Is_fixed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Is_indexed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount_from)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount_to)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Months_tied)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_Corp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vextir_greidast.Vextir_greiddir)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vaxtafotur.Heiti)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.VaxtarunaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VaxtarunaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VaxtarunaID })
+        </td>
+    </tr>
+}
+
+</table>

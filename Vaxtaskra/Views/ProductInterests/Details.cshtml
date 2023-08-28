@@ -1,0 +1,34 @@
+﻿@model Vaxtaskra.Models.ProductInterest
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProductInterest</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Product_indexation.ProductIndexationID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product_indexation.ProductIndexationID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vaxtaruna_interests.Vaxtaruna_InterestsID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vaxtaruna_interests.Vaxtaruna_InterestsID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductInterestsID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

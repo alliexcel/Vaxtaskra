@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="40d0ecf30d9443babae0c151cd772186" Name="Diagram1" ZoomLevel="70">
+        <EntityTypeShape EntityType="VaxtaDbModel.C__RefactorLog" Width="1.5" PointX="8.5" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VaxtaDbModel.Vaxtafotur" Width="1.5" PointX="2.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VaxtaDbModel.Vaxtafotur_interests" Width="1.5" PointX="5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VaxtaDbModel.Vaxtaruna" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="VaxtaDbModel.Vaxtaruna_interests" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VaxtaDbModel.Vextir_greidast" Width="1.5" PointX="5.75" PointY="2.75" IsExpanded="true" />
+        <AssociationConnector Association="VaxtaDbModel.FK_Vaxtafotur_interests_Vaxtafotur" ManuallyRouted="false" />
+        <AssociationConnector Association="VaxtaDbModel.FK_Vaxtaruna_interests_Vaxtaruna" ManuallyRouted="false" />
+        <AssociationConnector Association="VaxtaDbModel.FK_Vaxtaruna_Vextir_greidast" />
+        <AssociationConnector Association="VaxtaDbModel.FK_Vaxtaruna_Vaxtafotur" />
+        <EntityTypeShape EntityType="VaxtaDbModel.Vaxtasaga" Width="1.5" PointX="7.375" PointY="5.75" />
+        <EntityTypeShape EntityType="VaxtaDbModel.Product" Width="1.5" PointX="5.5" PointY="13.375" />
+        <EntityTypeShape EntityType="VaxtaDbModel.ProductCategory" Width="1.5" PointX="5.5" PointY="16.5" />
+        <AssociationConnector Association="VaxtaDbModel.FK_Products_ProductCategory" />
+        <EntityTypeShape EntityType="VaxtaDbModel.ProductType" Width="1.5" PointX="3.25" PointY="16.75" />
+        <AssociationConnector Association="VaxtaDbModel.FK_ProductCategory_ProductType" />
+        <EntityTypeShape EntityType="VaxtaDbModel.PaymentMethod" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="VaxtaDbModel.Product_indexation" Width="1.5" PointX="7.75" PointY="13.125" />
+        <EntityTypeShape EntityType="VaxtaDbModel.ProductInterest" Width="1.5" PointX="10" PointY="7.75" />
+        <EntityTypeShape EntityType="VaxtaDbModel.ProductPayment" Width="1.5" PointX="10" PointY="16.25" />
+        <AssociationConnector Association="VaxtaDbModel.FK_Product_indexation_Product" />
+        <AssociationConnector Association="VaxtaDbModel.FK_ProductInterests_ProductIndexation" />
+        <AssociationConnector Association="VaxtaDbModel.FK_ProductPayment_ProductIndexation" />
+        <AssociationConnector Association="VaxtaDbModel.FK_ProductInterests_Vaxtaruna_interests" />
+        <EntityTypeShape EntityType="VaxtaDbModel.Gjaldskra" Width="1.5" PointX="4.375" PointY="18.875" />
+        <EntityTypeShape EntityType="VaxtaDbModel.Gjaldskra_Product" Width="1.5" PointX="7.125" PointY="9.75" />
+        <EntityTypeShape EntityType="VaxtaDbModel.Tegund_gjalds" Width="1.5" PointX="4.875" PointY="0.75" />
+        <AssociationConnector Association="VaxtaDbModel.FK_Gjaldskra_Product_Gjaldskra" />
+        <AssociationConnector Association="VaxtaDbModel.FK_Gjaldskra_Product_Product" />
+        <AssociationConnector Association="VaxtaDbModel.FK_Gjaldskra_Product_TegundGjaldID" />
+        <EntityTypeShape EntityType="VaxtaDbModel.SourceSystem" Width="1.5" PointX="0.75" PointY="8.875" />
+        <AssociationConnector Association="VaxtaDbModel.FK_Product_SourceSystem" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

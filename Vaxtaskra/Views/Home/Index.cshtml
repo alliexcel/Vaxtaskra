@@ -1,0 +1,251 @@
+﻿@model IEnumerable<Vaxtaskra.Models.Vaxtarunur_list>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Vaxtaskrá</h2>
+<table class="table">
+    <tr class="pull-left">
+        <td>
+            @Html.ActionLink("Stofna vaxtafót", "Create", "Vaxtafoturs", null, new { @class = "btn btn-primary" })
+        </td>
+
+        <td>
+            @Html.ActionLink("Stofna vaxtarunu", "Create", "Vaxtarunas", null, new { @class = "btn btn-primary" })
+        </td>
+        <td>
+            <!-- @Html.ActionLink("Vörur", "Index", "Products", null, new { @class = "btn btn-primary" })-->
+        </td>
+ 
+           
+</tr>
+</table>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <table class="table">
+
+        <tr>
+            <th>
+                Verðtryggðir vextir
+            </th>
+            <th>
+                Óverðtryggðir vextir
+            </th>
+            <th>
+                Fastir vextir
+            </th>
+            <th>
+                Útlánavextir
+            </th>
+            <th>
+                Innlánavextir
+            </th>
+            <th>
+                Bundið
+            </th>
+            <th>
+                Sækja
+            </th>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.CheckBoxFor(model => model.FirstOrDefault().selectIndexed, new { @class = "form-control" })
+            </td>
+            <td>
+                @Html.CheckBoxFor(model => model.FirstOrDefault().selectNonIndexed, new { @class = "form-control" })
+            </td>
+            <td>
+                @Html.CheckBoxFor(model => model.FirstOrDefault().selectFixed, new { @class = "form-control" })
+            </td>
+            <td>
+                @Html.CheckBoxFor(model => model.FirstOrDefault().selectLending, new { @class = "form-control" })
+            </td>
+            <td>
+                @Html.CheckBoxFor(model => model.FirstOrDefault().selectDeposit, new { @class = "form-control" })
+            </td>
+            <td>
+            </td>
+            <td>
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Sækja" class="btn btn-info" />
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+    <H2>Innlánsvextir</H2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Vaxtafotur_heiti)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vaxtaruna_heiti)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vextir_greidast)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Months_Tied)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.is_fixed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.is_indexed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.amount_from)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.amount_to)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vaxtafotur_interest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Spread)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.interests_total)
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.is_deposit == true)
+            {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vaxtafotur_heiti)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vaxtaruna_heiti)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vextir_greidast)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Months_Tied)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_fixed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_indexed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.amount_from)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.amount_to)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vaxtafotur_interest)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Spread)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.interests_total)
+        </td>
+        <td>
+            @Html.ActionLink("Breyta", "Edit", new { VaxtarunaID = item.Vaxtaruna_ID }, new { @class = "btn btn-primary" })
+        </td>
+        <td>
+            @Html.ActionLink("Eyða", "Delete", new { id = item.Vaxtaruna_interestsID }, new { @class = "btn btn-primary" })
+        </td>
+
+    </tr>
+            }
+        }
+    </table>
+
+
+    <H2>Útlánsvextir</H2>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Vaxtafotur_heiti)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vaxtaruna_heiti)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Months_Tied)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.is_fixed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.is_indexed)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Vaxtafotur_interest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Spread)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.interests_total)
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.is_deposit == false)
+            {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vaxtafotur_heiti)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vaxtaruna_heiti)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Months_Tied)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_fixed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_indexed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vaxtafotur_interest)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Spread)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.interests_total)
+        </td>
+        <td>
+            @Html.ActionLink("Breyta", "Edit", new { VaxtarunaID = item.Vaxtaruna_ID }, new { @class = "btn btn-primary" })
+        </td>
+        <td>
+            @Html.ActionLink("Eyða", "Delete", new { id = item.Vaxtaruna_interestsID }, new { @class = "btn btn-primary" })
+        </td>
+
+    </tr>
+            }
+        }
+    </table>
+
+}
+
